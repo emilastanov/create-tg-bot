@@ -56,7 +56,14 @@ def create_tg_bot(ctx, project_name, debug):
     setup_env(project_path, debug)
 
     click.echo(f"✅ Project '{project_name}' created successfully.")
-
+    click.echo(f"\n\n✅ Project '{project_name}' created successfully.")
+    click.echo("👉 To run the project:")
+    click.echo(f"   1. Navigate to the project directory:\n      cd {project_name}")
+    click.echo("   2. Activate the virtual environment:")
+    click.echo("      - On macOS/Linux: source .venv/bin/activate")
+    click.echo("      - On Windows:     .\\.venv\\Scripts\\activate")
+    click.echo("   3. Run the project:")
+    click.echo("      python main.py\n")
 
 
 def main():
