@@ -1,1 +1,2 @@
 recursive-include create_tg_bot/templates *.jinja
+include README.md
