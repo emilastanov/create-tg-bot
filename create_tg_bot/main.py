@@ -1,25 +1,28 @@
+import subprocess
+import click
 import os
 
-import click
-import subprocess
-
-from create_tg_bot.cli.database import get_db_url
-from create_tg_bot.cli.env import use_env
-from create_tg_bot.cli.tokens import get_tokens
-from create_tg_bot.texts import CREATE_TG_APP_DESCRIPTION, CREATE_TG_APP_EPILOG, CREATE_TG_APP_SHORT_HELP
-from create_tg_bot.utils.folders import create_project_structure
 from create_tg_bot.utils.validators import validate_folder_name
 from create_tg_bot.utils.setup_env import setup_env
+from create_tg_bot.utils.folders import create_project_structure
+from create_tg_bot.cli.database import get_db_url
+from create_tg_bot.cli.tokens import get_tokens
+from create_tg_bot.cli.env import use_env
+from create_tg_bot.texts import (
+    CREATE_TG_APP_DESCRIPTION,
+    CREATE_TG_APP_SHORT_HELP,
+    CREATE_TG_APP_EPILOG
+)
 
 
 @click.command(
     context_settings=dict(help_option_names=["--help", "-h"]),
     short_help=CREATE_TG_APP_SHORT_HELP,
-    help=CREATE_TG_APP_DESCRIPTION,
     epilog=CREATE_TG_APP_EPILOG,
+    help=CREATE_TG_APP_DESCRIPTION,
 )
 @click.option(
-    "--debug",
+    "-d", "--debug",
     help="Activate debug mode.",
     is_flag=True
 )
@@ -41,8 +44,8 @@ def create_tg_bot(ctx, project_name, debug):
         project_name=project_name,
         project_path=project_path,
         token_dev=token_dev,
+        db_url=db_url,
         token=token,
-        db_url=db_url
     )
 
     use_env(project_path, debug)
@@ -55,7 +58,6 @@ def create_tg_bot(ctx, project_name, debug):
 
     setup_env(project_path, debug)
 
-    click.echo(f"✅ Project '{project_name}' created successfully.")
     click.echo(f"\n\n✅ Project '{project_name}' created successfully.")
     click.echo("👉 To run the project:")
     click.echo(f"   1. Navigate to the project directory:\n      cd {project_name}")

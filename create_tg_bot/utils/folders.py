@@ -1,7 +1,7 @@
 import click
 import os
 
-from create_tg_bot.templates import create_file_from_template
+from create_tg_bot.templates import create_files_from_template_folder
 from create_tg_bot.constants import ROOT_DIRS
 
 
@@ -18,38 +18,10 @@ def create_project_structure(project_name, project_path, token, token_dev, db_ur
         folder_path = os.path.join(project_path, folder_name)
         create_python_folder(folder_path)
 
-    create_file_from_template(project_path, "requirements.txt.jinja")
-    create_file_from_template(project_path, "alembic.ini.jinja")
-    create_file_from_template(project_path, ".gitignore.jinja")
-    create_file_from_template(project_path, "config.py.jinja")
-    create_file_from_template(project_path, "main.py.jinja")
-
-    create_file_from_template(project_path, "migrations/script.py.mako.jinja")
-    create_file_from_template(project_path, "migrations/env.py.jinja")
-    os.makedirs(os.path.join(os.path.join(project_path, "migrations"), "versions"))
-
-    create_file_from_template(project_path, "core/module_loader.py.jinja")
-
-    create_file_from_template(project_path, "models/base.py.jinja")
-    create_file_from_template(project_path, "models/User.py.jinja")
-    create_file_from_template(project_path, "services/db.py.jinja")
-    create_file_from_template(project_path, "crud/find_or_create_user.py.jinja")
-
-    create_file_from_template(project_path, "commands/start.py.jinja")
-    create_file_from_template(project_path, "texts/hello.py.jinja")
-
-    create_file_from_template(
+    create_files_from_template_folder(
         project_path,
-        ".github/workflows/ci-cd.yml.jinja",
-        project_name=project_name
-    )
-
-    create_file_from_template(project_path, ".github/workflows/ci-cd.yml.jinja")
-
-    create_file_from_template(
-        project_path,
-        ".env.jinja",
+        project_name=project_name,
         token_dev=token_dev,
-        token=token,
-        db_url=db_url
+        db_url=db_url,
+        token=token
     )
