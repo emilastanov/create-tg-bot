@@ -22,6 +22,12 @@ def setup_env(project_path, debug):
                 shell=is_windows
             )
             subprocess.run(
+                ["make", "gen-migration"],
+                cwd=project_path,
+                check=True,
+                shell=is_windows
+            )
+            subprocess.run(
                 ["make", "migrate"],
                 cwd=project_path,
                 check=True,

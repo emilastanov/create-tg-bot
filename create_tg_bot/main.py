@@ -65,7 +65,8 @@ def create_tg_bot(ctx, project_name, debug):
     click.echo("      - On macOS/Linux: source .venv/bin/activate")
     click.echo("      - On Windows:     .\\.venv\\Scripts\\activate")
     click.echo("   3. Run the project:")
-    click.echo("      python main.py\n")
+    click.echo("      - With Makefile:     make run\n")
+    click.echo("      - Without Makefile:  make run\n")
 
 
 def main():
