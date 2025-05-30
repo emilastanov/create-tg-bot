@@ -23,9 +23,6 @@ migrate:
 test:
 	$(VENV)pytest --disable-warnings
 
-lint:
-	$(VENV)ruff .
-
 docker-build:
 	docker build -t mybot:latest .
 

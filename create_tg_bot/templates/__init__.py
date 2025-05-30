@@ -1,6 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 import os.path
 import click
+import shutil
 
 templates_path = os.path.join(os.path.dirname(__file__))
 env = Environment(loader=FileSystemLoader(templates_path))
@@ -25,6 +26,16 @@ def create_files_from_template_folder(project_path, **kwargs):
 
 
 def create_file_from_template(project_path, template_name, **kwargs):
+    if "template" in template_name:
+        src_path = env.loader.get_source(env, template_name)[1]
+
+        dst_path = os.path.join(project_path, template_name)
+
+        shutil.copyfile(src_path, dst_path)
+
+        click.echo(f"📄 Template file {dst_path} copied without rendering.")
+        return
+
     template = env.get_template(template_name)
     rendered = template.render(**kwargs)
 
