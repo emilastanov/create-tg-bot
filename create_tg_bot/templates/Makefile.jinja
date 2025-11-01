@@ -7,8 +7,10 @@ ifeq ($(OS),Windows_NT)
     VENV = .venv/Scripts/
 endif
 
+ENV ?= development
+
 run:
-	$(VENV)python main.py
+	ENV=$(ENV) $(VENV)python main.py
 
 install:
 	$(VENV)pip install --upgrade pip && \

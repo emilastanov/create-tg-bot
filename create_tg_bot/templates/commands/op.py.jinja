@@ -20,7 +20,7 @@ async def handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if user_data.is_admin:
         text = "Вы уже являетесь администратором."
         await message.reply_text(text)
-    elif password != ADMIN_PASS_KEY:
+    elif password != str(ADMIN_PASS_KEY):
         text = "Ошибка аутентификации."
         await message.reply_text(text)
     else:
